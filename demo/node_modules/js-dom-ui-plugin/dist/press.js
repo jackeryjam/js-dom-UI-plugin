@@ -1,0 +1,1 @@
+module.exports=function(i,e,o,t){var u={};u.time=t&&t.time||800;var r=0,a=!0;i.addEventListener("touchstart",function(t){var e=o||function(){},n=this.dataset;return a=!0,r=setTimeout(function(){a=!1,e(n,i)},u.time),!0}),i.addEventListener("touchmove",function(t){clearTimeout(r),r=0}),i.addEventListener("touchend",function(t){return a&&e(this.dataset),clearTimeout(r),!1})};

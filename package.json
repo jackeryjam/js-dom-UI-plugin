@@ -1,0 +1,22 @@
+{
+  "name": "js-dom-ui-plugin",
+  "version": "1.0.1",
+  "description": "采用原生js实现的简洁版UI插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "jackery",
+    "email": "jackeryjam@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackeryjam/js-dom-UI-plugin.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^3.0.0"
+  }
+}
