@@ -23,6 +23,7 @@ module.exports = function (swipeView, options) {
                     viewport.style.display = "-webkit-box"
                     // 设置viewport的长度为下面items的倍数
                     viewport.style.width = viewportItems.length + "00%"
+                    viewportItems.forEach(item => item.style.width = "100%");
                     app.bindTouchEvent(); //绑定触摸事件
                     app.setNavBar();     //设置导航item
                 }.bind(app), false);
