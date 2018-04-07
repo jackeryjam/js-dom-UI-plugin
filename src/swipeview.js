@@ -7,7 +7,7 @@
  */
 module.exports = function (swipeView, options) {
     var viewport = swipeView.querySelector('div');
-    var viewportItems = viewport.querySelectorAll('div')
+    var viewportItems = viewport.querySelectorAll(':root')
     var currentPosition = 0; //记录当前页面位置
     var currentNav = -1;   //记录当导航栏的位置
     var pageNow = 1;   //当前页码

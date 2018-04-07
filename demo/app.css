@@ -54,3 +54,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     color: #3b76c0;
     border-bottom: 1px solid #3b76c0;
 }
+
+.item{
+	width: 100px;
+	border: 1px solid black;
+	height: 50px;
+}

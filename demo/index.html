@@ -4,7 +4,7 @@
   <title>H5单页面手势滑屏切换</title>
   <meta name="viewport" charset="utf-8" content="width=device-width,
     initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=1.0">
-    <link rel="stylesheet" href="dist/app.css">
+    <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -14,8 +14,12 @@
     <div class="nav-item">列表</div>
   </div>
   <div id="swipe-view">
-    <div id="swipe-view-viewport" class="viewport">
+    <div id="swipe-view-viewport" class="viewport" testWord="asds">
       <div class="pageview" style="background: #3b76c0">
+        <div class="item" onclick="console.log('1')"></div>
+        <div class="item" onclick="console.log('2')"></div>
+        <div class="item" onclick="console.log('3')"></div>
+        <div class="item" onclick="console.log('4')"></div>
       </div>
       <div class="pageview" style="background: #58c03b;">
       </div>
