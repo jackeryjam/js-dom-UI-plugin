@@ -1,0 +1,23 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+.container{
+    width: 100%;
+    line-height: 32px;
+}
+.item{
+    width: 100%; 
+    display: flex;
+    border: 1px solid #DDD;
+}
+.item-content{
+    text-align:left; 
+    flex: 1;
+    padding-left: 8px;
+}
+.item-append{
+    background-color: tomato; 
+    color: white; 
+    text-align: center;
+}
