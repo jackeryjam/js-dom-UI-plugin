@@ -56,7 +56,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .item{
-	width: 100px;
+	width: 90%;
+	margin: 10px auto;
 	border: 1px solid black;
 	height: 50px;
 }

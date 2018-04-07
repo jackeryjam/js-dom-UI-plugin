@@ -2,17 +2,18 @@
  * 传入
  * @param {Object} swipeView dom对象
  * @param {Object} options
- * @param {Array} [options.navItems] 导航栏dom对象数组，务必跟swipe对象下直系div的个数保持一致
+ * @param {Object} [options.navbar] 导航栏dom对象
  * @param {string} [options.activeClass] 导航栏活跃时候的css类名称
  */
 module.exports = function (swipeView, options) {
-    var viewport = swipeView.querySelector('div');
-    var viewportItems = viewport.querySelectorAll(':root')
+    var viewport = swipeView.querySelector('[swipeView="box"]');
+    var viewportItems = viewport.querySelectorAll('[swipeView="item"]')
+    var navbar = options && options.navbar || null;
+    var navItems = navbar == null ? null : navbar.querySelectorAll('[swipeView="nav-item"]')
+    var activeClassName = options && options.activeClass || '';
     var currentPosition = 0; //记录当前页面位置
     var currentNav = -1;   //记录当导航栏的位置
     var pageNow = 1;   //当前页码
-    var navItems = options && options.navItems || null;
-    var activeClassName = options && options.activeClass || '';
 
     var app = {
         init: function () {
@@ -23,7 +24,8 @@ module.exports = function (swipeView, options) {
                     viewport.style.display = "-webkit-box"
                     // 设置viewport的长度为下面items的倍数
                     viewport.style.width = viewportItems.length + "00%"
-                    viewportItems.forEach(item => item.style.width = "100%");
+                    viewportItems.forEach(item => item.style.width = "100%")
+                    
                     app.bindTouchEvent(); //绑定触摸事件
                     app.setNavBar();     //设置导航item
                 }.bind(app), false);

@@ -9,21 +9,21 @@
 
 <body>
   <div id="swipe-view-nav" class="navbar">
-    <div class="nav-item nav-active">专辑</div>
-    <div class="nav-item">节目</div>
-    <div class="nav-item">列表</div>
+    <div swipeView="nav-item" class="nav-item nav-active">专辑</div>
+    <div swipeView="nav-item" class="nav-item">节目</div>
+    <div swipeView="nav-item" class="nav-item">列表</div>
   </div>
   <div id="swipe-view">
-    <div id="swipe-view-viewport" class="viewport" testWord="asds">
-      <div class="pageview" style="background: #3b76c0">
+    <div id="swipe-view-viewport" class="viewport" swipeView="box">
+      <div swipeView="item" class="pageview" style="background: #3b76c0">
         <div class="item" onclick="console.log('1')"></div>
         <div class="item" onclick="console.log('2')"></div>
         <div class="item" onclick="console.log('3')"></div>
         <div class="item" onclick="console.log('4')"></div>
       </div>
-      <div class="pageview" style="background: #58c03b;">
+      <div swipeView="item" class="pageview" style="background: #58c03b;">
       </div>
-      <div class="pageview" style="background: #c03b25;">
+      <div swipeView="item" class="pageview" style="background: #c03b25;">
       </div>
     </div>
   </div>
