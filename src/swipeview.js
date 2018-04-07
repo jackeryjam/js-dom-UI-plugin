@@ -6,7 +6,7 @@
  * @param {string} [options.activeClass] 导航栏活跃时候的css类名称
  */
 module.exports = function (swipeView, options) {
-    var viewport = swipeView.querySelector('[swipeView="box"]');
+    var viewport = swipeView.querySelector('[swipeView="body"]');
     var viewportItems = viewport.querySelectorAll('[swipeView="item"]')
     var navbar = options && options.navbar || null;
     var navItems = navbar == null ? null : navbar.querySelectorAll('[swipeView="nav-item"]')

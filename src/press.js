@@ -1,6 +1,7 @@
-module.exports = function (dom, clickCb, pressCb, option) {
+module.exports = function (dom, pressCb, option) {
     var opt = {}
     opt.time = option && option.time || 800;
+    var clickCb = option && option.clickCb || function(){}
     var timeOutEvent=0;//定时器   
     var click = true
 
@@ -10,7 +11,7 @@ module.exports = function (dom, clickCb, pressCb, option) {
         click = true
         timeOutEvent = setTimeout(function(){ 
             click = false
-            task(data, dom)
+            task(data)
         }, opt.time);
         return true
     });
