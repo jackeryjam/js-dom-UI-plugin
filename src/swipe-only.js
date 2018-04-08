@@ -84,7 +84,8 @@ module.exports = function (groupId, option) {
   
   return function(){
     if(currentDom != null) {
-      transform.call(currentDom, 0);
+      currentDom.style.webkitTransform = "translate3d(0,0,0)";
+      currentDom = null
     }
   }
 }

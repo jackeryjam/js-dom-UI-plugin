@@ -1,6 +1,6 @@
 {
-  "name": "js-dom-ui-plugin",
-  "version": "1.0.8",
+  "name": "@tencent/js-dom-ui-plugin",
+  "version": "1.0.9",
   "description": "采用原生js实现的简洁版UI插件",
   "main": "index.js",
   "scripts": {
