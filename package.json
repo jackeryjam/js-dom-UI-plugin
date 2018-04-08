@@ -1,11 +1,12 @@
 {
   "name": "@tencent/js-dom-ui-plugin",
-  "version": "1.0.10",
+  "version": "1.0.15",
   "description": "采用原生js实现的简洁版UI插件",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "gulp && npm publish"
+    "release": "gulp && npm publish",
+    "release_t": "gulp && tnpm publish"
   },
   "author": {
     "name": "jackery",

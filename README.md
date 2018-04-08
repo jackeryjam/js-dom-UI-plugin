@@ -6,7 +6,7 @@
 * press是进行长按监听的
 * swipe是进行左拉监听，ios左拉出现删除键的效果
 * swipeview是左右滑动切换屏幕的效果
-  * [效果预览](https://jackeryjam.github.io/js-dom-UI-plugin/demo/index.html)
+  * [效果预览](https://jackeryjam.github.io/js-dom-UI-plugin/index.html)
   * 这部分是参考[H5单页面手势滑屏切换原理](https://www.cnblogs.com/onepixel/p/5300445.html)这篇文章的介绍以及代码完成的，想知道写法可以点进去了解
   * 使用用法可以看demo里面如何引用
   ```js
