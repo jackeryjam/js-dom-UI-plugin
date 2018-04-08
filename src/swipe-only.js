@@ -81,4 +81,10 @@ module.exports = function (groupId, option) {
   }
 
   doms.forEach(item => bindTouchEvent(item)) //绑定触摸事件
+  
+  return function(){
+    if(currentDom != null) {
+      transform.call(currentDom, 0);
+    }
+  }
 }
