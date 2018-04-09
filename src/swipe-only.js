@@ -26,9 +26,10 @@ module.exports = function (groupId, option) {
 
     dom.addEventListener("touchstart", function (e) {
       click = true
+      delayTime = option && option.time || 300
       setTimeout(function () {
         click = false
-      }, 300)
+      }, delayTime)
 
       if (currentDom != null && currentDom != dom) {
         transform.call(currentDom, 0);
@@ -49,6 +50,7 @@ module.exports = function (groupId, option) {
 
     /*手指在屏幕上滑动，页面跟随手指移动*/
     dom.addEventListener("touchmove", function (e) {
+      click = false
       e.preventDefault();
       //如果当前滑动已结束，不管其他手指是否在屏幕上都禁止该事件
       if (isTouchEnd) return;
@@ -80,10 +82,13 @@ module.exports = function (groupId, option) {
     }.bind(this), false);
   }
 
-  doms.forEach(item => bindTouchEvent(item)) //绑定触摸事件
-  
-  return function(){
-    if(currentDom != null) {
+  //绑定触摸事件
+  for(var i = 0; i < doms.length; i++) {
+    bindTouchEvent(doms[i])
+  }
+
+  return function () {
+    if (currentDom != null) {
       currentDom.style.webkitTransform = "translate3d(0,0,0)";
       currentDom = null
     }
