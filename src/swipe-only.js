@@ -26,7 +26,7 @@ module.exports = function (groupId, option) {
 
     dom.addEventListener("touchstart", function (e) {
       click = true
-      delayTime = option && option.time || 300
+      var delayTime = option && option.time || 300
       setTimeout(function () {
         click = false
       }, delayTime)
