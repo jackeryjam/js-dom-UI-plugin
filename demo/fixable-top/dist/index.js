@@ -66,10 +66,21 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./swipeview/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./fixable-top/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "../src/fixable-top.js":
+/*!*****************************!*\
+  !*** ../src/fixable-top.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function getPos(obj) {\r\n    //定义两个变量，并且初始值为0\r\n    var l = 0;\r\n    var t = 0;\r\n    //在这里使用while循环,参数为obj\r\n    // 因为语句执行到最后，obj获取的是body和其父级的距离，而这个值因为body本身是最外层，所以值为0\r\n    // 而为0的时候条件为false，所以函数停止执行\r\n    while (obj) {\r\n        l += obj.offsetLeft;//获取物体离body左边的距离\r\n        t += obj.offsetTop;//获取物体离body顶部的距离\r\n        obj = obj.offsetParent;//最后变量成为其有定位的祖先元素\r\n    }\r\n    return { left: l, top: t };//设置函数返回值(注意是json格式）\r\n}\r\n\r\nmodule.exports = function (id, option) {\r\n    var header = document.querySelector(\"[fixable-header='\" + id + \"']\")\r\n    if (header == null) header = document.querySelector(\"[data-fixable-header='\" + id + \"']\")\r\n    var body = document.querySelector(\"[fixable-body='\" + id + \"']\")\r\n    if (body == null) body = document.querySelector(\"[data-fixable-body='\" + id + \"']\")\r\n    var isFixed = false\r\n    var bodyPos = getPos(body).top\r\n    var headerHeight = header.offsetHeight\r\n    header.style.top = 0;\r\n    window.addEventListener(\"scroll\", function () {\r\n        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;\r\n        var marginTop = 0;\r\n        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight + headerHeight) {\r\n            header.style.position = \"fixed\";\r\n            isFixed = true\r\n        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight + headerHeight) ) {\r\n            header.style.position = \"\";\r\n            isFixed = false\r\n        }\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///../src/fixable-top.js?");
+
+/***/ }),
 
 /***/ "../src/swipeview.js":
 /*!***************************!*\
@@ -82,14 +93,14 @@ eval("/**\r\n * 传入\r\n * @param {Object} swipeView dom对象\r\n * @param {O
 
 /***/ }),
 
-/***/ "./swipeview/index.js":
-/*!****************************!*\
-  !*** ./swipeview/index.js ***!
-  \****************************/
+/***/ "./fixable-top/index.js":
+/*!******************************!*\
+  !*** ./fixable-top/index.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// var swipeview = require(\"js-dom-ui-plugin/dist/swipeview\")\r\nvar swipeview = __webpack_require__(/*! ../../src/swipeview */ \"../src/swipeview.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\nswipeview(document.getElementById(\"swipe-view\"), {\r\n  activeClass: \"nav-active\",\r\n  navbar: document.getElementById(\"swipe-view-nav\")\r\n});\r\n\n\n//# sourceURL=webpack:///./swipeview/index.js?");
+eval("// var swipeview = require(\"js-dom-ui-plugin/dist/swipeview\")\r\nvar swipeview = __webpack_require__(/*! ../../src/swipeview */ \"../src/swipeview.js\")\r\nvar fixable = __webpack_require__(/*! ../../src/fixable-top */ \"../src/fixable-top.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\nswipeview(document.getElementById(\"swipe-view\"), {\r\n  activeClass: \"nav-active\",\r\n  navbar: document.getElementById(\"swipe-view-nav\")\r\n});\r\n\r\nfixable(\"id\")\r\n\n\n//# sourceURL=webpack:///./fixable-top/index.js?");
 
 /***/ })
 

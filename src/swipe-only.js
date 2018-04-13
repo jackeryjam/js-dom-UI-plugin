@@ -1,10 +1,13 @@
 module.exports = function (groupId, option) {
   var doms = document.querySelectorAll('[swipeOnly="' + groupId + '"]')
+  if(doms.length == 0) doms = document.querySelectorAll('[data-swipeOnly="' + groupId + '"]')
   var currentDom = null
 
   var bindTouchEvent = function (dom) {
     var append = dom.querySelector('[swipeAppend]')
+    if (append == null) append = dom.querySelector('[data-swipeAppend]')
     var appendWidth = append && append.offsetWidth || 60
+    appendWidth = option && option.offsetWidth || appendWidth
     var currentPosition = 0; //记录当前页面位置
     var viewport = dom;
     var pageWidth = window.innerWidth; //页面宽度

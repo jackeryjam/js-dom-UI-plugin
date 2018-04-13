@@ -1,0 +1,75 @@
+body{
+	margin: 0;
+}
+
+.viewport {
+	overflow: hidden;
+	position: relative
+}
+
+#swipe-view-nav{
+	padding-top: 10px;
+	z-index: 100;
+	background-color: #fff;
+	width: 100%;
+	top: 0;
+}
+
+#swipe-view-viewport {
+	display: flex;
+	align-items: flex-start;
+	-webkit-transform: translate3d(0,0,0);
+	backface-visibility: hidden;
+}
+
+.pageview {
+	-webkit-box-flex: 1;
+	width: 0
+}
+
+button {
+	width: 40%;
+	margin: auto;
+	height: 3em;
+	background: #fff6de;
+	line-height: 3rem;
+	color: #000;
+	padding: 0;
+	border: none;
+	display: block
+}
+
+.modSearchPanel .nav {
+    padding-bottom: 8px;
+    background: #fff;
+    text-align: center;
+}
+.has-border-bottom {
+    position: relative;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 4px;
+}
+
+.navbar .nav-item{
+    padding: 4px;
+}
+
+.navbar .nav-active{
+    color: #3b76c0;
+    border-bottom: 1px solid #3b76c0;
+}
+
+.item{
+	width: 90%;
+	margin: 10px auto;
+	border: 1px solid black;
+	height: 50px;
+}

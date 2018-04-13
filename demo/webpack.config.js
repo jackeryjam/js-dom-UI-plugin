@@ -4,8 +4,9 @@ module.exports = {
   entry: {
     // press: './press/index.js',
     // swipe: './swipe/index.js',
-    swipeOnly: './swipeOnly/index.js',
+    // swipeOnly: './swipeOnly/index.js',
     // swipeview: './swipeview/index.js',
+    'fixable-top': './fixable-top/index.js',
   },
   output: {
     path: path.resolve(__dirname),

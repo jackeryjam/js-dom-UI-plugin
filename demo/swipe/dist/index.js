@@ -1,1 +1,97 @@
-!function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:r})},n.r=function(t){Object.defineProperty(t,"__esModule",{value:!0})},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=3)}([,,function(t,e){t.exports=function(t,e){var n=t.querySelector('[swipe="append"]'),r=n&&n.offsetWidth||60,o=0,i={transform:function(t){t<-r||t>0||(this.style.webkitTransform="translate3d("+t+"px,0,0)",o=t)},bindTouchEvent:function(){var n,a,c=t,s=(window.innerWidth,-(t.offsetWidth+r)),u=0,f=!1,l=!0,d=!0;t.addEventListener("touchstart",function(t){if(d=!0,setTimeout(function(){d=!1},300),1==t.touches.length||l){var e=t.touches[0];n=e.pageX,a=e.pageY,u=o,c.style.webkitTransition="",(new Date).getTime(),f=!1,l=!1}}.bind(this),!1),t.addEventListener("touchmove",function(t){if(t.preventDefault(),!l){var e=t.touches[0],o=e.pageX-n,i=e.pageY-a;if(Math.abs(o)>Math.abs(i)){var d=u+(o<r?o:r);d<=0&&d>=s&&(this.transform.call(c,d),f=!0),o>0?"right":"left"}}}.bind(this),!1),t.addEventListener("touchend",function(t){d&&e&&e.clickCb&&e.clickCb(this.dataset),f&&!l&&(l=!0,c.style.webkitTransition="0.3s ease -webkit-transform",o=o>-r/2?0:-r,i.transform.call(c,o)),!0},!1)}};i.bindTouchEvent()}},function(t,e,n){var r=n(2);document.querySelectorAll(".item").forEach(t=>r(t,{clickCb:t=>console.log(t)}))}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./swipe/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/js-dom-ui-plugin/dist/swipe.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/js-dom-ui-plugin/dist/swipe.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("module.exports=function(t,e){var n=t.querySelector('[swipe=\"append\"]'),d=n&&n.offsetWidth||60,i=0,s={transform:function(t){t<-d||0<t||(this.style.webkitTransform=\"translate3d(\"+t+\"px,0,0)\",i=t)},bindTouchEvent:function(){var a,o,r=t,c=(window.innerWidth,-(t.offsetWidth+d)),f=0,h=!1,u=!0,n=!0;t.addEventListener(\"touchstart\",function(t){if(n=!0,setTimeout(function(){n=!1},300),1==t.touches.length||u){var e=t.touches[0];a=e.pageX,o=e.pageY,f=i,r.style.webkitTransition=\"\",(new Date).getTime(),u=h=!1}}.bind(this),!1),t.addEventListener(\"touchmove\",function(t){if(t.preventDefault(),!u){var e=t.touches[0],n=e.pageX-a,i=e.pageY-o;if(Math.abs(n)>Math.abs(i)){var s=f+(n<d?n:d);s<=0&&c<=s&&(this.transform.call(r,s),h=!0),0<n?\"right\":\"left\"}}}.bind(this),!1),t.addEventListener(\"touchend\",function(t){n&&e&&e.clickCb&&e.clickCb(this.dataset),h&&!u&&(u=!0,r.style.webkitTransition=\"0.3s ease -webkit-transform\",i=-d/2<i?0:-d,s.transform.call(r,i)),!0},!1)}};s.bindTouchEvent()};\n\n//# sourceURL=webpack:///./node_modules/js-dom-ui-plugin/dist/swipe.js?");
+
+/***/ }),
+
+/***/ "./swipe/index.js":
+/*!************************!*\
+  !*** ./swipe/index.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var swipe = __webpack_require__(/*! js-dom-ui-plugin/dist/swipe */ \"./node_modules/js-dom-ui-plugin/dist/swipe.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\n\r\ndocument.querySelectorAll(\".item\").forEach(item => swipe(item, {\r\n  clickCb: data => console.log(data)\r\n}))\r\n\n\n//# sourceURL=webpack:///./swipe/index.js?");
+
+/***/ })
+
+/******/ });
