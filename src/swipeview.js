@@ -81,11 +81,12 @@ module.exports = function (swipeView, options) {
                     isMove = false; //是否产生滑动
                     isTouchEnd = false; //当前滑动开始
                 }
+                return true
             }.bind(this), false);
 
             /*手指在屏幕上滑动，页面跟随手指移动*/
             swipeView.addEventListener("touchmove", function (e) {
-                e.preventDefault();
+                //e.preventDefault();
 
                 //如果当前滑动已结束，不管其他手指是否在屏幕上都禁止该事件
                 if (isTouchEnd) return;
@@ -103,6 +104,7 @@ module.exports = function (swipeView, options) {
                     }
                     direction = deltaX > 0 ? "right" : "left"; //判断手指滑动的方向
                 }
+                return true
 
             }.bind(this), false);
 
@@ -139,6 +141,7 @@ module.exports = function (swipeView, options) {
                         //设置导航栏，DOM操作需要放到异步队列中，否则会出现卡顿
                         this.setNavBar();
                     }.bind(this), 100);
+                    return true
                 }
             }.bind(this), false);
         }

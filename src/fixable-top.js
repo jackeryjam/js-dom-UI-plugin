@@ -25,10 +25,10 @@ module.exports = function (id, option) {
     window.addEventListener("scroll", function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var marginTop = 0;
-        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight + headerHeight) {
+        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight) {
             header.style.position = "fixed";
             isFixed = true
-        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight + headerHeight) ) {
+        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight) ) {
             header.style.position = "";
             isFixed = false
         }
