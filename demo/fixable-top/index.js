@@ -7,4 +7,11 @@ swipeview(document.getElementById("swipe-view"), {
   navbar: document.getElementById("swipe-view-nav")
 });
 
-fixable("id")
+fixable("id",{
+  toFixed: function(data){
+    console.log("toFixed")
+  },
+  toNormal: function(data){
+    console.log("toNormal")
+  }
+})

@@ -71,6 +71,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../src/fixable-top.js":
+/*!*****************************!*\
+  !*** ../src/fixable-top.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function getPos(obj) {\r\n    //定义两个变量，并且初始值为0\r\n    var l = 0;\r\n    var t = 0;\r\n    //在这里使用while循环,参数为obj\r\n    // 因为语句执行到最后，obj获取的是body和其父级的距离，而这个值因为body本身是最外层，所以值为0\r\n    // 而为0的时候条件为false，所以函数停止执行\r\n    while (obj) {\r\n        l += obj.offsetLeft;//获取物体离body左边的距离\r\n        t += obj.offsetTop;//获取物体离body顶部的距离\r\n        obj = obj.offsetParent;//最后变量成为其有定位的祖先元素\r\n    }\r\n    return { left: l, top: t };//设置函数返回值(注意是json格式）\r\n}\r\n\r\nfunction getPixal(str){\r\n    if(str.substr(str.length-2) == \"px\") {\r\n        return parseInt(str.substr(0, str.length - 2))\r\n    } else {\r\n        return 0\r\n    }\r\n}\r\n\r\nmodule.exports = function (id, option) {\r\n    var header = document.querySelector(\"[fixable-header='\" + id + \"']\")\r\n    if (header == null) header = document.querySelector(\"[data-fixable-header='\" + id + \"']\")\r\n    var body = document.querySelector(\"[fixable-body='\" + id + \"']\")\r\n    if (body == null) body = document.querySelector(\"[data-fixable-body='\" + id + \"']\")\r\n    var isFixed = false\r\n    var bodyPos = getPos(body).top\r\n    var headerHeight = header.offsetHeight\r\n    header.style.top = 0;\r\n    var toFixed = option && option.toFixed || function(){}\r\n    var toNormal = option && option.toNormal || function(){}\r\n    window.addEventListener(\"scroll\", function () {\r\n        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;\r\n        var marginTop = 0;\r\n        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight) {\r\n            body.style.marginTop = getPixal(body.style.marginTop) + headerHeight \r\n            header.style.position = \"fixed\";\r\n            isFixed = true\r\n            toFixed()\r\n        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight) ) {\r\n            body.style.marginTop = getPixal(body.style.marginTop) - headerHeight \r\n            header.style.position = \"\";\r\n            isFixed = false\r\n            toNormal()\r\n        }\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///../src/fixable-top.js?");
+
+/***/ }),
+
 /***/ "./fixable-top/index.js":
 /*!******************************!*\
   !*** ./fixable-top/index.js ***!
@@ -78,19 +89,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// var swipeview = require(\"js-dom-ui-plugin/dist/swipeview\")\r\nvar swipeview = __webpack_require__(/*! @tencent/js-dom-ui-plugin/dist/swipeview */ \"./node_modules/@tencent/js-dom-ui-plugin/dist/swipeview.js\")\r\nvar fixable = __webpack_require__(/*! @tencent/js-dom-ui-plugin/dist/fixable-top */ \"./node_modules/@tencent/js-dom-ui-plugin/dist/fixable-top.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\nswipeview(document.getElementById(\"swipe-view\"), {\r\n  activeClass: \"nav-active\",\r\n  navbar: document.getElementById(\"swipe-view-nav\")\r\n});\r\n\r\nfixable(\"id\")\r\n\n\n//# sourceURL=webpack:///./fixable-top/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/@tencent/js-dom-ui-plugin/dist/fixable-top.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@tencent/js-dom-ui-plugin/dist/fixable-top.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("function getPos(e){for(var t=0,o=0;e;)t+=e.offsetLeft,o+=e.offsetTop,e=e.offsetParent;return{left:t,top:o}}module.exports=function(e,t){var o=document.querySelector(\"[fixable-header='\"+e+\"']\");null==o&&(o=document.querySelector(\"[data-fixable-header='\"+e+\"']\"));var r=document.querySelector(\"[fixable-body='\"+e+\"']\");null==r&&(r=document.querySelector(\"[data-fixable-body='\"+e+\"']\"));var l=!1,f=getPos(r).top,n=o.offsetHeight;o.style.top=0,window.addEventListener(\"scroll\",function(){var e=document.documentElement.scrollTop||document.body.scrollTop;!l&&f<e+n&&e<f+r.offsetHeight?(o.style.position=\"fixed\",l=!0):l&&(e+n<f||e>f+r.offsetHeight)&&(o.style.position=\"\",l=!1)})};\n\n//# sourceURL=webpack:///./node_modules/@tencent/js-dom-ui-plugin/dist/fixable-top.js?");
+eval("// var swipeview = require(\"js-dom-ui-plugin/dist/swipeview\")\r\nvar swipeview = __webpack_require__(/*! @tencent/js-dom-ui-plugin/dist/swipeview */ \"./node_modules/@tencent/js-dom-ui-plugin/dist/swipeview.js\")\r\nvar fixable = __webpack_require__(/*! ../../src/fixable-top */ \"../src/fixable-top.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\nswipeview(document.getElementById(\"swipe-view\"), {\r\n  activeClass: \"nav-active\",\r\n  navbar: document.getElementById(\"swipe-view-nav\")\r\n});\r\n\r\nfixable(\"id\",{\r\n  toFixed: function(data){\r\n    console.log(\"toFixed\")\r\n  },\r\n  toNormal: function(data){\r\n    console.log(\"toNormal\")\r\n  }\r\n})\r\n\n\n//# sourceURL=webpack:///./fixable-top/index.js?");
 
 /***/ }),
 

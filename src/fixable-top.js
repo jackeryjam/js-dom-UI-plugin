@@ -13,6 +13,14 @@ function getPos(obj) {
     return { left: l, top: t };//设置函数返回值(注意是json格式）
 }
 
+function getPixal(str){
+    if(str.substr(str.length-2) == "px") {
+        return parseInt(str.substr(0, str.length - 2))
+    } else {
+        return 0
+    }
+}
+
 module.exports = function (id, option) {
     var header = document.querySelector("[fixable-header='" + id + "']")
     if (header == null) header = document.querySelector("[data-fixable-header='" + id + "']")
@@ -22,15 +30,21 @@ module.exports = function (id, option) {
     var bodyPos = getPos(body).top
     var headerHeight = header.offsetHeight
     header.style.top = 0;
+    var toFixed = option && option.toFixed || function(){}
+    var toNormal = option && option.toNormal || function(){}
     window.addEventListener("scroll", function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var marginTop = 0;
         if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight) {
+            body.style.marginTop = getPixal(body.style.marginTop) + headerHeight 
             header.style.position = "fixed";
             isFixed = true
+            toFixed()
         } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight) ) {
+            body.style.marginTop = getPixal(body.style.marginTop) - headerHeight 
             header.style.position = "";
             isFixed = false
+            toNormal()
         }
     });
 }
