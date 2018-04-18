@@ -32,6 +32,9 @@ module.exports = function (id, option) {
     header.style.top = 0;
     var toFixed = option && option.toFixed || function(){}
     var toNormal = option && option.toNormal || function(){}
+    window.addEventListener("touchstart", function(){
+        bodyPos = getPos(body).top
+    })
     window.addEventListener("scroll", function () {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var marginTop = 0;

@@ -21,15 +21,16 @@ module.exports = function (swipeView, options) {
             if (!/(windows)/i.test(navigator.userAgent)) {
                 document.addEventListener('DOMContentLoaded', function () {
                     swipeView.style.overflow = "hidden"
-                    viewport.style.display = "-webkit-box"
+                    viewport.style.display = "flex"
                     // 设置viewport的长度为下面items的倍数
                     viewport.style.width = viewportItems.length + "00%"
-                    for(var i = 0; i < viewportItems.length; i++) {
-                        viewportItems[i].style.width = "100%" 
+                    for (var i = 0; i < viewportItems.length; i++) {
+                        viewportItems[i].style.flex = "1"
                     }
-
+                    app.setHeight()
                     app.bindTouchEvent(); //绑定触摸事件
                     app.setNavBar();     //设置导航item
+                    app.bindNavBar()
                 }.bind(app), false);
             }
         }(),
@@ -39,6 +40,12 @@ module.exports = function (swipeView, options) {
         transform: function (translate) {
             this.style.webkitTransform = "translate3d(" + translate + "px,0,0)";
             currentPosition = translate;
+        },
+
+        toPage: () => {
+            let pageWidth = swipeView.offsetWidth; //页面宽度
+            let translate = -(pageNow - 1) * pageWidth
+            app.transform.call(viewport, translate);
         },
 
         /**
@@ -52,6 +59,33 @@ module.exports = function (swipeView, options) {
             }
             currentNav = pageNow - 1;
             navItems[currentNav].classList.add(activeClassName);
+        },
+
+        /**
+         * 设置导航栏
+         */
+        bindNavBar: function () {
+            console.log(navItems)
+            // 没有导航栏就直接结束
+            if (navItems === null) return
+            for (let i = 0; i < navItems.length; i++) {
+                navItems[i].addEventListener('click', e => {
+                    pageNow = i + 1
+                    app.setNavBar()
+                    app.toPage()
+                    app.setHeight()
+                })
+            }
+        },
+
+        /**
+         * 设置高度
+         */
+        setHeight: function () {
+            // 没有导航栏就直接结束
+            currentNav = pageNow - 1;
+            var height = viewportItems[currentNav].offsetHeight
+            swipeView.style.height = height
         },
 
         /**
@@ -140,6 +174,7 @@ module.exports = function (swipeView, options) {
                     setTimeout(function () {
                         //设置导航栏，DOM操作需要放到异步队列中，否则会出现卡顿
                         this.setNavBar();
+                        this.setHeight()
                     }.bind(this), 100);
                     return true
                 }
