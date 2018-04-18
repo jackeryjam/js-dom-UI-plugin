@@ -35,7 +35,7 @@ module.exports = function (id, option) {
     window.addEventListener("touchstart", function(){
         bodyPos = getPos(body).top
     })
-    window.addEventListener("scroll", function () {
+    function onScroll() {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var marginTop = 0;
         if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight) {
@@ -49,5 +49,7 @@ module.exports = function (id, option) {
             isFixed = false
             toNormal()
         }
-    });
+    }
+    window.addEventListener("scroll", onScroll);
+    return onScroll
 }
