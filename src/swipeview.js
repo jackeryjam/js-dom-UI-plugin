@@ -7,10 +7,14 @@
 module.exports = function (options) {
     var id = options && options.id || ''
     var swipeView = document.querySelector('[swipe-body="' + id + '"]');
+    if (swipeView == null) swipeView = document.querySelector('[data-swipe-body="' + id + '"]');
     var viewport = swipeView.querySelector('div')
     var viewportItems = viewport.querySelectorAll('[swipe-item]')
+    if (viewportItems.length == 0) viewportItems = viewport.querySelectorAll('[data-swipe-item]')
     var navbar = document.querySelector('[swipe-header="' + id + '"]');
+    if (navbar == null) navbar = document.querySelector('[data-swipe-header="' + id + '"]');
     var navItems = navbar == null ? null : navbar.querySelectorAll('[swipe-nav]')
+    if (navItems && navItems.length == 0) navItems = navbar.querySelectorAll('[data-swipe-nav]')
     var activeClassName = options && options.activeClass || '';
     var currentPosition = 0; //记录当前页面位置
     var currentNav = -1;   //记录当导航栏的位置
