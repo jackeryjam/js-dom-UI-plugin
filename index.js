@@ -3,5 +3,6 @@ module.exports = {
   swipe: require('./dist/swipe'),
   swipeview: require('./dist/swipeview'),
   swipeOnly: require('./dist/swipe-only'),
-  fixableTop: require('./dist/fixable-top')
+  fixableTop: require('./dist/fixable-top'),
+  swipeviewTop: require('./dist/swipe-view-top'),
 }
