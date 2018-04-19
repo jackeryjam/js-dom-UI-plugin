@@ -66,7 +66,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./fixable-top/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./swipe-view-top/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -82,6 +82,17 @@ eval("function getPos(obj) {\r\n    //定义两个变量，并且初始值为0\r
 
 /***/ }),
 
+/***/ "../src/swipe-view-top.js":
+/*!********************************!*\
+  !*** ../src/swipe-view-top.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const swipeview = __webpack_require__(/*! ./swipeview */ \"../src/swipeview.js\")\r\nconst fixable = __webpack_require__(/*! ./fixable-top */ \"../src/fixable-top.js\")\r\n\r\nmodule.exports = function (options) {\r\n    let opt = options || {}\r\n    opt.id = opt.id || ''\r\n    opt.activeClass = opt.activeClass || ''\r\n    opt.headerTag = opt.headerTag || 'swipe-header'\r\n    opt.bodyTag = opt.bodyTag || 'swipe-body'\r\n    swipeview({\r\n        activeClass: opt.activeClass,\r\n        id: opt.id,\r\n        touchendCb: fixable({\r\n            headerTag: opt.headerTag,\r\n            bodyTag: opt.bodyTag,\r\n            id: opt.id\r\n        })\r\n    });\r\n}\n\n//# sourceURL=webpack:///../src/swipe-view-top.js?");
+
+/***/ }),
+
 /***/ "../src/swipeview.js":
 /*!***************************!*\
   !*** ../src/swipeview.js ***!
@@ -93,14 +104,14 @@ eval("/**\r\n * 传入\r\n * @param {Object} options\r\n * @param {string} [opti
 
 /***/ }),
 
-/***/ "./fixable-top/index.js":
-/*!******************************!*\
-  !*** ./fixable-top/index.js ***!
-  \******************************/
+/***/ "./swipe-view-top/index.js":
+/*!*********************************!*\
+  !*** ./swipe-view-top/index.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// var swipeview = require(\"@tencent/js-dom-ui-plugin/dist/swipeview\")\r\n// var fixable = require(\"@tencent/js-dom-ui-plugin/dist/fixable-top\")\r\nvar swipeview = __webpack_require__(/*! ../../src/swipeview */ \"../src/swipeview.js\")\r\nvar fixable = __webpack_require__(/*! ../../src/fixable-top */ \"../src/fixable-top.js\")\r\n// swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏\r\nswipeview({\r\n  activeClass: \"nav-active\",\r\n  touchendCb: fixable({\r\n    headerTag: 'swipe-header',\r\n    bodyTag: 'swipe-body'\r\n  })\r\n});\r\n\r\n\n\n//# sourceURL=webpack:///./fixable-top/index.js?");
+eval("// var swipeview = require(\"@tencent/js-dom-ui-plugin/dist/swipeview\")\r\n// var fixable = require(\"@tencent/js-dom-ui-plugin/dist/fixable-top\")\r\nvar swipeViewTop = __webpack_require__(/*! ../../src/swipe-view-top */ \"../src/swipe-view-top.js\")\r\nswipeViewTop({\r\n  activeClass: \"nav-active\"\r\n});\r\n\r\n\n\n//# sourceURL=webpack:///./swipe-view-top/index.js?");
 
 /***/ })
 

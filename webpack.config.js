@@ -7,10 +7,15 @@ module.exports = {
     // swipeOnly: './swipeOnly/index.js',
     // swipeview: './swipeview/index.js',
     // 'fixable-top': './fixable-top/index.js',
-    'swipe-view-top': './swipe-view-top/index.js',
+    'swipe-view-top': './src/swipe-view-top.js',
+  },
+  module: {
+    rules: [
+      { test: /\.js$/, use: 'babel-loader' }
+    ]
   },
   output: {
     path: path.resolve(__dirname),
-    filename: '[name]/dist/index.js'
+    filename: './dist/[name].js'
   }
 };
