@@ -1,42 +1,32 @@
-.viewport {
-	height: 100%;
+body{
+	margin: 0;
+}
+
+div[swipe-body]{
 	overflow: hidden;
-	position: relative
 }
 
-#swipe-view-viewport {
-	display: -webkit-box;
-	-webkit-transform: translate3d(0,0,0);
-	backface-visibility: hidden
+div[swipe-body]>div{
+	display: flex;
+	align-items: flex-start;
+	width: 300%;
 }
 
-.pageview {
-	-webkit-box-flex: 1;
-	width: 0
+div[swipe-item]{
+	flex: 1;
 }
 
-button {
-	width: 40%;
-	margin: auto;
-	height: 3em;
-	background: #fff6de;
-	line-height: 3rem;
-	color: #000;
-	padding: 0;
-	border: none;
-	display: block
+.item1{
+	background: #3b76c0;
+	height: 200px;
 }
-
-.modSearchPanel .nav {
-    padding-bottom: 8px;
-    background: #fff;
-    text-align: center;
+.item2{
+	background: #58c03b;
+	height: 300px;
 }
-.has-border-bottom {
-    position: relative;
-}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
+.item3{
+	background: #c03b25;
+	height: 500px;
 }
 
 .navbar{
@@ -45,16 +35,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     border-bottom: 1px solid #EEE;
     margin-bottom: 4px;
 }
-
 .navbar .nav-item{
     padding: 4px;
 }
-
 .navbar .nav-active{
     color: #3b76c0;
     border-bottom: 1px solid #3b76c0;
 }
-
 .item{
 	width: 90%;
 	margin: 10px auto;
