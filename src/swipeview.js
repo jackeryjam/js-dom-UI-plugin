@@ -3,6 +3,7 @@
  * @param {Object} options
  * @param {string} [options.id] id，可以为空
  * @param {string} [options.activeClass] 导航栏活跃时候的css类名称
+ * @param {function} [options.touchendCb] 导航栏活跃时候的css类名称
  */
 module.exports = function (options) {
     var id = options && options.id || ''
@@ -148,7 +149,6 @@ module.exports = function (options) {
 
             /*手指离开屏幕时，计算最终需要停留在哪一页*/
             swipeView.addEventListener("touchend", function (e) {
-                // e.preventDefault();
                 var translate = 0;
                 //计算手指在屏幕上停留的时间
                 var deltaT = new Date().getTime() - startT;
@@ -174,12 +174,9 @@ module.exports = function (options) {
                     this.transform.call(viewport, translate);
                     //计算当前的页码
                     pageNow = Math.round(Math.abs(translate) / pageWidth) + 1;
-
-                    setTimeout(function () {
-                        //设置导航栏，DOM操作需要放到异步队列中，否则会出现卡顿
-                        this.setNavBar();
-                        this.setHeight()
-                    }.bind(this), 100);
+                    this.setNavBar();
+                    this.setHeight()
+                    if (options && options.touchendCb) options.touchendCb()
                     return true
                 }
             }.bind(this), false);
