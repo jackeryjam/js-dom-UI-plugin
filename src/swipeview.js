@@ -1,15 +1,16 @@
 /**
  * 传入
- * @param {Object} swipeView dom对象
  * @param {Object} options
- * @param {Object} [options.navbar] 导航栏dom对象
+ * @param {string} [options.id] id，可以为空
  * @param {string} [options.activeClass] 导航栏活跃时候的css类名称
  */
-module.exports = function (swipeView, options) {
-    var viewport = swipeView.querySelector('[swipeView="body"]');
-    var viewportItems = viewport.querySelectorAll('[swipeView="item"]')
-    var navbar = options && options.navbar || null;
-    var navItems = navbar == null ? null : navbar.querySelectorAll('[swipeView="nav-item"]')
+module.exports = function (options) {
+    var id = options && options.id || ''
+    var swipeView = document.querySelector('[swipe-body="' + id + '"]');
+    var viewport = swipeView.querySelector('div')
+    var viewportItems = viewport.querySelectorAll('[swipe-item]')
+    var navbar = document.querySelector('[swipe-header="' + id + '"]');
+    var navItems = navbar == null ? null : navbar.querySelectorAll('[swipe-nav]')
     var activeClassName = options && options.activeClass || '';
     var currentPosition = 0; //记录当前页面位置
     var currentNav = -1;   //记录当导航栏的位置
@@ -65,7 +66,6 @@ module.exports = function (swipeView, options) {
          * 设置导航栏
          */
         bindNavBar: function () {
-            console.log(navItems)
             // 没有导航栏就直接结束
             if (navItems === null) return
             for (let i = 0; i < navItems.length; i++) {
