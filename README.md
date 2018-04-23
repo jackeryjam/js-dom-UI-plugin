@@ -9,7 +9,7 @@
   * [效果预览](https://jackeryjam.github.io/js-dom-UI-plugin/index.html)
   * 这部分是参考[H5单页面手势滑屏切换原理](https://www.cnblogs.com/onepixel/p/5300445.html)这篇文章的介绍以及代码完成的，想知道写法可以点进去了解
   * 使用用法可以看demo里面如何引用
-  例如  [swipe-view-top](https://jackeryjam.github.io/js-dom-UI-plugin/swipe-view-top/index.html)
+  例如  [swipe-view-top](https://jackeryjam.github.io/js-dom-UI-plugin/demo/swipe-view-top/index.html)
   ```html
   <div class="navbar" style="z-index: 100" swipe-header>
     <div swipe-nav class="nav-item nav-active">专辑</div>
