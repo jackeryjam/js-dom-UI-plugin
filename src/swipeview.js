@@ -1,15 +1,21 @@
 /**
  * 传入
- * @param {Object} swipeView dom对象
  * @param {Object} options
- * @param {Object} [options.navbar] 导航栏dom对象
+ * @param {string} [options.id] id，可以为空
  * @param {string} [options.activeClass] 导航栏活跃时候的css类名称
+ * @param {function} [options.touchendCb] 导航栏活跃时候的css类名称
  */
-module.exports = function (swipeView, options) {
-    var viewport = swipeView.querySelector('[swipeView="body"]');
-    var viewportItems = viewport.querySelectorAll('[swipeView="item"]')
-    var navbar = options && options.navbar || null;
-    var navItems = navbar == null ? null : navbar.querySelectorAll('[swipeView="nav-item"]')
+module.exports = function (options) {
+    var id = options && options.id || ''
+    var swipeView = document.querySelector('[swipe-body="' + id + '"]');
+    if (swipeView == null) swipeView = document.querySelector('[data-swipe-body="' + id + '"]');
+    var viewport = swipeView.querySelector('div')
+    var viewportItems = viewport.querySelectorAll('[swipe-item]')
+    if (viewportItems.length == 0) viewportItems = viewport.querySelectorAll('[data-swipe-item]')
+    var navbar = document.querySelector('[swipe-header="' + id + '"]');
+    if (navbar == null) navbar = document.querySelector('[data-swipe-header="' + id + '"]');
+    var navItems = navbar == null ? null : navbar.querySelectorAll('[swipe-nav]')
+    if (navItems && navItems.length == 0) navItems = navbar.querySelectorAll('[data-swipe-nav]')
     var activeClassName = options && options.activeClass || '';
     var currentPosition = 0; //记录当前页面位置
     var currentNav = -1;   //记录当导航栏的位置
@@ -65,7 +71,6 @@ module.exports = function (swipeView, options) {
          * 设置导航栏
          */
         bindNavBar: function () {
-            console.log(navItems)
             // 没有导航栏就直接结束
             if (navItems === null) return
             for (let i = 0; i < navItems.length; i++) {
@@ -144,7 +149,6 @@ module.exports = function (swipeView, options) {
 
             /*手指离开屏幕时，计算最终需要停留在哪一页*/
             swipeView.addEventListener("touchend", function (e) {
-                // e.preventDefault();
                 var translate = 0;
                 //计算手指在屏幕上停留的时间
                 var deltaT = new Date().getTime() - startT;
@@ -170,12 +174,9 @@ module.exports = function (swipeView, options) {
                     this.transform.call(viewport, translate);
                     //计算当前的页码
                     pageNow = Math.round(Math.abs(translate) / pageWidth) + 1;
-
-                    setTimeout(function () {
-                        //设置导航栏，DOM操作需要放到异步队列中，否则会出现卡顿
-                        this.setNavBar();
-                        this.setHeight()
-                    }.bind(this), 100);
+                    this.setNavBar();
+                    this.setHeight()
+                    if (options && options.touchendCb) options.touchendCb()
                     return true
                 }
             }.bind(this), false);

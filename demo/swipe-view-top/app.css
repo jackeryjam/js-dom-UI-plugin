@@ -2,38 +2,17 @@ body{
 	margin: 0;
 }
 
-div[swipe-body]{
-	overflow: hidden;
-}
-
-div[swipe-body]>div{
-	display: flex;
+.viewport {
 	align-items: flex-start;
-	width: 300%;
-}
-
-div[swipe-item]{
-	flex: 1;
-}
-
-.item1{
-	background: #3b76c0;
-	height: 200px;
-}
-.item2{
-	background: #58c03b;
-	height: 300px;
-}
-.item3{
-	background: #c03b25;
-	height: 500px;
 }
 
 .navbar{
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid #EEE;
-    margin-bottom: 4px;
+	margin-bottom: 4px;
+	background: white;
+	width: 100%;
 }
 .navbar .nav-item{
     padding: 4px;

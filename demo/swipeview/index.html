@@ -8,25 +8,22 @@
 </head>
 
 <body>
-  <div id="swipe-view-nav" class="navbar">
-    <div swipeView="nav-item" class="nav-item nav-active">专辑</div>
-    <div swipeView="nav-item" class="nav-item">节目</div>
-    <div swipeView="nav-item" class="nav-item">列表</div>
+  <div class="navbar" swipe-header>
+    <div swipe-nav class="nav-item nav-active">专辑</div>
+    <div swipe-nav class="nav-item">节目</div>
+    <div swipe-nav class="nav-item">列表</div>
   </div>
-  <div id="swipe-view">
-    <div class="viewport" swipeView="body">
-      <div class="pageview" swipeView="item" style="background: #3b76c0">
-        <div class="item" onclick="console.log('1')"></div>
-        <div class="item" onclick="console.log('2')"></div>
-        <div class="item" onclick="console.log('3')"></div>
-        <div class="item" onclick="console.log('4')"></div>
-      </div>
-      <div swipeView="item" class="pageview" style="background: #58c03b;">
-      </div>
-      <div swipeView="item" class="pageview" style="background: #c03b25;">
-      </div>
+  <div swipe-body>
+    <!-- 下面的这个div千万不能省 -->
+    <div>
+      <div swipe-item class="item1"></div>
+      <div swipe-item class="item2"></div>
+      <div swipe-item class="item3"></div>
     </div>
   </div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
   <script src="dist/index.js"></script>
 </body>
 

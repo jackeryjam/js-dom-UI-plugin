@@ -11,13 +11,11 @@ body{
 	flex: 1;
 }
 
-
-
 .navbar{
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid #EEE;
-    margin-bottom: 4px;
+	margin-bottom: 4px;
 }
 .navbar .nav-item{
     padding: 4px;

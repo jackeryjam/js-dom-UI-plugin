@@ -21,11 +21,14 @@ function getPixal(str){
     }
 }
 
-module.exports = function (id, option) {
-    var header = document.querySelector("[fixable-header='" + id + "']")
-    if (header == null) header = document.querySelector("[data-fixable-header='" + id + "']")
-    var body = document.querySelector("[fixable-body='" + id + "']")
-    if (body == null) body = document.querySelector("[data-fixable-body='" + id + "']")
+module.exports = function (option) {
+    var id = option && option.id || ""
+    var headerTag = option && option.headerTag || 'fixable-header'
+    var header = document.querySelector("[" + headerTag + "='" + id + "']")
+    if (header == null) header = document.querySelector("[data-" + headerTag + "='" + id + "']")
+    var bodyTag = option && option.bodyTag || 'fixable-body'
+    var body = document.querySelector("[" + bodyTag + "='" + id + "']")
+    if (body == null) body = document.querySelector("[data-" + bodyTag + "='" + id + "']")
     var isFixed = false
     var bodyPos = getPos(body).top
     var headerHeight = header.offsetHeight
@@ -35,19 +38,21 @@ module.exports = function (id, option) {
     window.addEventListener("touchstart", function(){
         bodyPos = getPos(body).top
     })
-    window.addEventListener("scroll", function () {
+    function onScroll() {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var marginTop = 0;
-        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight) {
+        if (!isFixed && scrollTop + headerHeight > bodyPos && scrollTop  < bodyPos + body.offsetHeight - header.offsetHeight) {
             body.style.marginTop = getPixal(body.style.marginTop) + headerHeight 
             header.style.position = "fixed";
             isFixed = true
             toFixed()
-        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight) ) {
+        } else if (isFixed && (scrollTop + headerHeight < bodyPos || scrollTop  > bodyPos + body.offsetHeight - header.offsetHeight) ) {
             body.style.marginTop = getPixal(body.style.marginTop) - headerHeight 
             header.style.position = "";
             isFixed = false
             toNormal()
         }
-    });
+    }
+    window.addEventListener("scroll", onScroll);
+    return onScroll
 }
