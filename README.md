@@ -9,12 +9,28 @@
   * [效果预览](https://jackeryjam.github.io/js-dom-UI-plugin/index.html)
   * 这部分是参考[H5单页面手势滑屏切换原理](https://www.cnblogs.com/onepixel/p/5300445.html)这篇文章的介绍以及代码完成的，想知道写法可以点进去了解
   * 使用用法可以看demo里面如何引用
+  例如  [swipe-view-top](https://jackeryjam.github.io/js-dom-UI-plugin/swipe-view-top/index.html)
+  ```html
+  <div class="navbar" style="z-index: 100" swipe-header>
+    <div swipe-nav class="nav-item nav-active">专辑</div>
+    <div swipe-nav class="nav-item">节目</div>
+    <div swipe-nav class="nav-item">列表</div>
+  </div>
+  <div id="swipe-view" swipe-body>
+    <!-- 这个div一定要的，不加这句话的样式就所有的等高 -->
+    <div style="align-items: flex-start;">
+      <div class="pageview" swipe-item style="background: #3b76c0">
+      </div>
+      <div swipe-item class="pageview" style="background: #58c03b;">
+      </div>
+      <div swipe-item class="pageview" style="background: #c03b25;">
+      </div>
+    </div>
+  </div>
+  ```
   ```js
-  // 只require其中一部份能使代码体积变小，这部分仅需不到2K
-  var swipeview = require("js-dom-ui-plugin/dist/swipeview")
-  // swipeview有两个参数，一个是要滑动的部分的dom节点，这部分必须保证 后面可选部分是导航栏
-  swipeview(document.getElementById("swipe-view"), {
-    activeClass: "nav-active",
-    navItems: document.querySelectorAll("div.nav-item"),
+  const swipeViewTop = require("js-dom-ui-plugin/dist/swipe-view-top")
+  swipeViewTop({
+    activeClass: "nav-active"
   });
   ```

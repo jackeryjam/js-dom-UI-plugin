@@ -3,12 +3,7 @@ body{
 }
 
 .viewport {
-	overflow: hidden;
-	display: flex;
 	align-items: flex-start;
-}
-.pageview {
-	flex: 1;
 }
 
 .navbar{
@@ -16,6 +11,8 @@ body{
     justify-content: space-around;
     border-bottom: 1px solid #EEE;
 	margin-bottom: 4px;
+	background: white;
+	width: 100%;
 }
 .navbar .nav-item{
     padding: 4px;
@@ -29,11 +26,4 @@ body{
 	margin: 10px auto;
 	border: 1px solid black;
 	height: 50px;
-}
-
-
-#swipe-view-nav{
-	background: white;
-	width: 100%;
-	z-index: 100;
 }
